@@ -12,12 +12,12 @@
                         <div class="flex px-6 py-2 w-full bg-center bg-no-repeat bg-cover"
                             style="height: 45rem; background-image: url('/images/background.jpg')">
 
-                            <div class="absolute inset-0 bg-black opacity-60"></div>
+                            <div class="absolute inset-0 bg-black border-0 opacity-60"></div>
 
                             <div class="flex relative justify-between items-center mx-auto max-w-2xl h-full lg:max-w-7xl">
-                                <div class="flex lg:col-span-10">
+                                <div class="flex border-0 lg:col-span-10">
                                     <div
-                                        class="w-70 items-start gap-4 rounded-lg  p-6 ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+                                        class="w-70 items-start gap-4 border-0  p-6 ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
 
                                         <h3 class="text-5xl text-white text-bold text-start">
                                             Gérer votre restaurant
@@ -30,7 +30,6 @@
                                             de votre restaurant.
 
                                         </p>
-
 
                                     </div>
                                 </div>
@@ -78,5 +77,8 @@
                 </main>
             </div>
         </div>
+
     </div>
+
+    <x-footer class="container justify-center items-center mx-auto" />
 @endsection

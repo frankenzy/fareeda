@@ -1,12 +1,14 @@
+// tailwind.config.js
+
 import forms from '@tailwindcss/forms';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-/** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        "./node_modules/flowbite/**/*.js"
     ],
 
     theme: {
@@ -27,16 +29,30 @@ export default {
                 'figtree-dark-gray': '#666666',
                 'figtree-black': '#000000',
                 'figtree-white': '#FFFFFF',
-                'one':'#F85E05'
+                'one': '#F85E05',
             },
             backgroundImage: {
-                'full-background': "url('public/images/background.jpg')",
-              },
-              width: {
+                'full-background': "url('/images/background.jpg')", // Assurez-vous que le chemin d'accès à votre image est correct
+            },
+            width: {
                 '70': '70%',
-              },
+                '40': '40%',
+                '60': '60%',
+                '7xxl':'90%',
+                '8xl':'80%',
+            },
+            height: {
+                '90vh': '90vh',
+                '92vh': '92vh',
+                '96vh': '96vh',
+                '98vh': '98vh',
+                '95vh': '95vh',
+            },
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        require('flowbite/plugin'), // Assurez-vous que le plugin 'flowbite' est correctement installé
+    ],
 };
