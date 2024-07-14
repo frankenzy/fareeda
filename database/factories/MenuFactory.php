@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Categorie;
+use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,15 @@ class MenuFactory extends Factory
      */
     public function definition(): array
     {
+
+
         return [
             //
+            'nom' => $this->faker->name(),
+            'descriptions' => $this->faker->text(200),
+            'prix' => $this->faker->randomFloat(0, 0, 500),
+            'restaurant_id' => Restaurant::inRandomOrder()->value('id'),
+            'categorie_id' => Categorie::inRandomOrder()->value('id'),
         ];
     }
 }

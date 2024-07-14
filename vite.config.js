@@ -6,7 +6,11 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/device-mockups.scss',
+                'resources/css/devices.scss',
+                'resources/css/general.scss',
                 'resources/js/app.js',
+                'resources/js/bootstrap.js',
             ],
             refresh: true,
             include: [

@@ -15,14 +15,15 @@
                             <div class="absolute inset-0 bg-black border-0 opacity-60"></div>
 
                             <div class="flex relative justify-between items-center mx-auto max-w-2xl h-full lg:max-w-7xl">
-                                <div class="flex border-0 lg:col-span-10">
-                                    <div
-                                        class="w-70 items-start gap-4 border-0  p-6 ring-1 ring-white/[0.05] transition duration-300 hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] lg:pb-10 dark:bg-zinc-900 dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700 dark:focus-visible:ring-[#FF2D20]">
+                                <div class="border-0 lg:col-span-10">
+                                    <div class="gap-4 items-start p-6 font-bold border-0 w-70">
 
-                                        <h3 class="text-5xl text-white text-bold text-start">
+                                        <h3 class="text-5xl font-bold text-white text-bold text-start">
                                             Gérer votre restaurant
                                             Fareeda
                                         </h3>
+                                    </div>
+                                    <div class="gap-4 items-start p-6 w-10/12 font-bold border-0">
 
                                         <p class="mt-5 text-2xl text-white">
                                             Nous vous offrons un ensemble complet d'outils de gestion pour optimiser la
@@ -30,11 +31,11 @@
                                             de votre restaurant.
 
                                         </p>
-
                                     </div>
+
                                 </div>
 
-                                <div class="flex lg:col-span-2" style="width: 30rem ; height: 24rem;">
+                                <div class="flex lg:col-span-2" style="width: 34rem ; height: 28rem;">
                                     <img src="{{ asset('images/scan-code.png') }}" alt="scane code" class="w-full" />
                                 </div>
                             </div>
@@ -68,6 +69,7 @@
                                                 frameborder="0" allowfullscreen=""></iframe>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
 

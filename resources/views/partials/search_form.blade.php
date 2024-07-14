@@ -2,7 +2,7 @@
     @csrf
     <div class="flex justify-between w-full">
         <div class="justify-start">
-            {{ __($count) }}
+            {{ __($totalRestaurant) }}
             <h3 class="block text-2l bold">Restaurants</h3>
         </div>
         <div class="flex gap-2 justify-end">

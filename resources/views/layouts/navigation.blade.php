@@ -14,12 +14,12 @@
                     <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
                         {{ __('Accueil') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('restaurants.index')" :active="request()->routeIs('dashboard')">
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
             </div>
-            @if (!Route::is('menu.index'))
+            @if (!Route::is('restaurants.show'))
                 <div class="pt-3 pb-3 space-y-1">
                     <x-connect-button class="text-white bg-one">
                         {{-- TODO: Ajouter un fas icon de connection --}}
@@ -27,19 +27,16 @@
                     </x-connect-button>
                 </div>
             @endif
-            @if (Route::is('menu.index'))
+            @if (Route::is('restaurants.show'))
                 <div class="flex">
                     <div class="pt-3 mx-4 space-y-3">
-
                         <button type="button" data-modal-target="notification-modal"
                             data-modal-toggle="notification-modal" data-modal-show="notification-modal"
                             class="inline-flex relative items-center p-3 text-sm font-medium text-center text-red-600 bg-gray-300 rounded-lg hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
                             <i class="fa fa-bell-o"></i>
                             <span class="sr-only">Notifications</span>
                         </button>
-
                     </div>
-
                     <div class="pt-3 mx-4 space-y-3">
                         <button type="button" id="dropdown-toggle-panier" data-dropdown-toggle="dropdown-panier"
                             aria-hidden="true" data-dropdown-placement="bottom"
@@ -48,17 +45,15 @@
                             <span class="sr-only">Panier</span>
                             <div
                                 class="inline-flex absolute -top-2 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white -end-2 dark:border-gray-900">
-                                <span x-text="panier"></span>
+                                <span x-text="total"></span>
                             </div>
                         </button>
-
                     </div>
                 </div>
             @endif
         </div>
     </div>
     <x-notification-component />
-
     <div id="dropdown-panier"
         class="hidden z-20 w-full max-w-sm bg-white rounded-lg divide-y divide-gray-100 shadow dark:bg-gray-800 dark:divide-gray-700"
         aria-labelledby="dropdown-toggle-panier">
@@ -70,9 +65,25 @@
             class="overflow-y-auto py-2 h-96 text-gray-700 divide-y divide-gray-100 dark:divide-gray-700 dark:text-gray-200">
             <template x-for="index in panier" :key="index">
                 <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <div class="flex-shrink-0">
-                        <img class="w-11 h-11 rounded-full" src="/docs/images/people/profile-picture-1.jpg"
-                            alt="Image utilisateur">
+                    <div class="grid-cols-1">
+                        <div class="flex flex-col items-center space-y-2">
+                            <button type="button" id="decrement-btn"
+                                @click="quantity = Math.max(quantity - 1, 1); total = total -1 "
+                                class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                -
+                            </button>
+
+                            <span x-text="quantity"
+                                class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                            </span>
+
+                            <button type="button" id="increment-btn"
+                                @click="quantity = quantity + 1; total = total + 1"
+                                class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                +
+                            </button>
+                        </div>
+
                     </div>
                     <div class="w-full ps-3">
                         <div class="mb-1.5 text-sm text-gray-500 dark:text-gray-400">
@@ -85,7 +96,7 @@
             </template>
 
         </div>
-        <a href="#"
+        <a href="{{route('panier.index')}}"
             class="block py-2 text-sm font-medium text-center bg-orange-500 rounded-b-lg text-white-900 hover:bg-orange-500 dark:bg-orange-800 dark:hover:bg-orange-700 dark:text-white">
             <div class="inline-flex items-center">
                 <h3 class="text-xl text-white"> Valider mes connandes</h3>

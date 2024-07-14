@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categorie;
+use App\Models\Customer;
+use App\Models\Menu;
+use App\Models\Restaurant;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            UserSeeder::class,
+            RestaurantSeeder::class,
+            CategorieSeeder::class,
+            CustomerSeeder::class,
+            MenuSeeder::class,
         ]);
     }
 }

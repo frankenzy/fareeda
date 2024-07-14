@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer>
@@ -14,10 +15,15 @@ class CustomerFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected static ?string $password;
     public function definition(): array
     {
         return [
             //
+            'nom'=>fake()->name(),
+            'telephone'=>fake()->unique()->phoneNumber(),
+            'email'=>fake()->email(),
+            'password' => static::$password ??= Hash::make('password'),
         ];
     }
 }

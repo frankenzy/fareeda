@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Restaurant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,9 @@ class CategorieFactory extends Factory
     {
         return [
             //
+            'nom'=>fake()->unique()->name(),
+            'descriptions'=>fake()->text(100),
+            'restaurant_id'=>Restaurant::inRandomOrder()->value('id'),
         ];
     }
 }

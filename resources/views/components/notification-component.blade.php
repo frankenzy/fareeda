@@ -35,7 +35,7 @@ class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 
                 <div class="items-end">
                     <button type="submit"
                         class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-orange-500 rounded-lg focus:ring-4 focus:outline-none focus:ring-orange-300"
-                        :disabled="isLoading">
+                        >
                         Appeler
                         <i class="mx-6 fa fa-arrow-down"></i>
                     </button>

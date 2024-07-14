@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorecategorieRequest;
 use App\Http\Requests\UpdatecategorieRequest;
-use App\Models\categorie;
+use App\Models\Categorie;
 
 class CategorieController extends Controller
 {

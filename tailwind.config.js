@@ -48,6 +48,16 @@ module.exports = {
                 '98vh': '98vh',
                 '95vh': '95vh',
             },
+            fontSize: {
+                's':'8px',
+                'x':'10px',
+                'xs': '.75rem',
+                'sm': '.875rem',
+                'base': '1rem',
+                'lg': '1.125rem',
+                'xl': '1.25rem',
+                '2xl': '1.5rem',
+              },
         },
     },
 
