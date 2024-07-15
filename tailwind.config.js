@@ -63,6 +63,8 @@ module.exports = {
 
     plugins: [
         forms,
+        require('tailwindcss'),
+        require('autoprefixer'),
         require('flowbite/plugin'), // Assurez-vous que le plugin 'flowbite' est correctement installé
     ],
 };

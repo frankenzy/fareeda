@@ -11,7 +11,6 @@
                         <i class="mr-4 fa fa-bars"></i>
                         {{ __('Tout') }}
                     </a>
-
                     @foreach ($categories as $categorie)
                         <a href="#"
                             class="flex items-center px-6 py-4 font-bold text-gray-800 bg-white rounded-lg border-transparent shadow-md hover:bg-orange-400">
@@ -50,9 +49,62 @@
 
                                     <div class="px-4 mb-4 w-1/3">
                                         <a href="#" class="">
-                                            <x-menu-card :image="$image" :title="$item->nom" :description="$item->description"
-                                                :prix="$item->prix">
-                                            </x-menu-card>
+
+                                            <x-modal>
+                                                <x-slot name="button">
+                                                    <x-menu-card :image="$image" :title="$item->nom" :description="$item->description"
+                                                        :prix="$item->prix">
+                                                    </x-menu-card>
+                                                </x-slot>
+                                                <x-slot name='title'>
+                                                    {{ $item->nom }}
+                                                </x-slot>
+                                                <x-slot name="content">
+                                                    <form class="p-4 md:p-5"
+                                                        @submit.prevent="addToCart('{{ addslashes($image) }}', '{{ addslashes($auteur) }}', '{{ addslashes($item->description) }}', '{{ addslashes($item->prix) }}', quantity)">
+                                                        <div class="grid gap-4 mb-4">
+                                                            <div class="w-full">
+                                                                <img src="{{ asset('images/salade.jpeg') }}" alt="produit"
+                                                                    class="object-cover rounded-xl shadow-sm w-100 h-100"/>
+                                                            </div>
+                                                            <div>
+                                                                <h3>{{ $item->nom }}</h3>
+                                                            </div>
+                                                            <div>
+                                                                <p class="text-2xl font-bold text-orange-500 price">{{ $item->prix }}</p>
+                                                            </div>
+
+                                                            <div>
+                                                                <x-input-label value='Ajouter un commentaire' id='order_textarea_comment'/>
+                                                                <x-text-area/>
+                                                            </div>
+                                                        </div>
+
+                                                       <x-slot name='footer'>
+                                                        <div class="flex col-span-2 justify-between">
+                                                            <div class='flex items-center'>
+                                                                <button type="button"
+                                                                    @click="quantity = Math.max(quantity - 1, 1)"
+                                                                    class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700">-</button>
+                                                                <span x-text="quantity" class="content-center mx-4 items"></span>
+                                                                <button type="button" @click="quantity++"
+                                                                    class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700">+</button>
+                                                            </div>
+                                                            <div class='flex items-center'>
+                                                                <p x-data="{ total: 1, prix: {{ $item->prix }} }" class="px-4 text-orange-500">
+                                                                    Total <span x-text="total * prix"></span>
+                                                                </p>
+                                                                <button type="submit" data-modal-hide="default-modal"
+                                                                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-orange-500 rounded-lg focus:ring-4 focus:outline-none focus:ring-orange-300"
+                                                                    @click="total = quantity">
+                                                                    Ajouter au panier
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                       </x-slot>
+                                                    </form>
+                                                </x-slot>
+                                            </x-modal>
                                         </a>
                                     </div>
                                 @endforeach
