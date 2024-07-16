@@ -47,10 +47,9 @@
                                         $prix = '3000';
                                     @endphp
 
-                                    <div class="px-4 mb-4 w-1/3">
-                                        <a href="#" class="">
-
-                                            <x-modal>
+                                    <div class="px-4 mb-4 w-1/3" x-data>
+                                        <a href="#" class="w-full" @click="initialize">
+                                            <x-modal class="w-full">
                                                 <x-slot name="button">
                                                     <x-menu-card :image="$image" :title="$item->nom" :description="$item->description"
                                                         :prix="$item->prix">
