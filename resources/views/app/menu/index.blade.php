@@ -64,43 +64,47 @@
                                                         <div class="grid gap-4 mb-4">
                                                             <div class="w-full">
                                                                 <img src="{{ asset('images/salade.jpeg') }}" alt="produit"
-                                                                    class="object-cover rounded-xl shadow-sm w-100 h-100"/>
+                                                                    class="object-cover rounded-xl shadow-sm w-100 h-100" />
                                                             </div>
                                                             <div>
                                                                 <h3>{{ $item->nom }}</h3>
                                                             </div>
                                                             <div>
-                                                                <p class="text-2xl font-bold text-orange-500 price">{{ $item->prix }}</p>
+                                                                <p class="text-2xl font-bold text-orange-500 price">
+                                                                    {{ $item->prix }}</p>
                                                             </div>
 
                                                             <div>
-                                                                <x-input-label value='Ajouter un commentaire' id='order_textarea_comment'/>
-                                                                <x-text-area/>
+                                                                <x-input-label value='Ajouter un commentaire'
+                                                                    id='order_textarea_comment' />
+                                                                <x-text-area />
                                                             </div>
                                                         </div>
 
-                                                       <x-slot name='footer'>
-                                                        <div class="flex col-span-2 justify-between">
-                                                            <div class='flex items-center'>
-                                                                <button type="button"
-                                                                    @click="quantity = Math.max(quantity - 1, 1)"
-                                                                    class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700">-</button>
-                                                                <span x-text="quantity" class="content-center mx-4 items"></span>
-                                                                <button type="button" @click="quantity++"
-                                                                    class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700">+</button>
+                                                        <x-slot name='footer'>
+                                                            <div class="flex col-span-2 justify-between"
+                                                                x-data="{ nombre: 1, prix: {{ $item->prix }} }">
+                                                                <div class='flex items-center'>
+                                                                    <button type="button"
+                                                                        @click="nombre = Math.max(nombre - 1, 1)"
+                                                                        class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700">-</button>
+                                                                    <span x-text="nombre"
+                                                                        class="content-center mx-4 items"></span>
+                                                                    <button type="button" @click="nombre++"
+                                                                        class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700">+</button>
+                                                                </div>
+                                                                <div class='flex items-center'>
+                                                                    <p class="px-4 text-orange-500">
+                                                                        Total <span x-text="`${nombre}x${prix}`"></span>
+                                                                    </p>
+                                                                    <button type="submit" data-modal-hide="default-modal"
+                                                                        class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-orange-500 rounded-lg focus:ring-4 focus:outline-none focus:ring-orange-300"
+                                                                        @click="total = quantity + nombre">
+                                                                        Ajouter au panier
+                                                                    </button>
+                                                                </div>
                                                             </div>
-                                                            <div class='flex items-center'>
-                                                                <p x-data="{ total: 1, prix: {{ $item->prix }} }" class="px-4 text-orange-500">
-                                                                    Total <span x-text="total * prix"></span>
-                                                                </p>
-                                                                <button type="submit" data-modal-hide="default-modal"
-                                                                    class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-orange-500 rounded-lg focus:ring-4 focus:outline-none focus:ring-orange-300"
-                                                                    @click="total = quantity">
-                                                                    Ajouter au panier
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                       </x-slot>
+                                                        </x-slot>
                                                     </form>
                                                 </x-slot>
                                             </x-modal>
@@ -118,6 +122,12 @@
     <x-footer class="justify-center mx-auto mt-0 bg-gray-100" />
 
     <script>
+        function initialize() {
+            quantity = 1;
+        }
+    </script>
+
+    <script>
         import * as menu from './resources/js/menu.js';
         let init = function init() {
             return {
@@ -126,12 +136,6 @@
             };
         }
     </script>
-
-    {{-- <script>
-        let init = function init() {
-            consol.log('hello');
-        }
-    </script> --}}
 @endsection
 {{-- function loadModal() {
     console.log('loading modal...');
