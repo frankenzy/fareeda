@@ -13,7 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
-        // dd($middleware);
+        // Add your custom middleware here
+        //
+        $middleware->alias([
+            'IsCustommer' => \App\Http\Middleware\IsCustomer::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // dd($exceptions);
