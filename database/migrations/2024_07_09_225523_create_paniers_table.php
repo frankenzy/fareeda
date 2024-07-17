@@ -17,9 +17,6 @@ return new class extends Migration
             $table->unsignedBigInteger('produit_id');
             $table->integer('quantite');
             $table->integer('prix_unitaire');
-            $table->integer('sous_total');
-            $table->integer('total');
-            $table->string('adresse_livraison')->nullable();
             $table->string('statut')->default('en_cours');
             $table->timestamps();
         });

@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('custom', CustomerController::class);
 
 //Menu
-Route::resource('menu', MenuController::class);
+// Route::resource('menu', MenuController::class);
 
 //Categories
 Route::resource('categories',CategorieController::class);
@@ -39,10 +39,12 @@ Route::resource('categories',CategorieController::class);
 // Restaurants
 Route::resource('restaurants', RestaurantController::class);
 
+Route::get('menus.show',[MenuController::class,'show'])->name('menu.show');
 // Panier
-Route::resource('panier', PanierController::class);
+Route::post('/panier/store', [PanierController::class,'store'])->name('panier.store');
+Route::get('/panier/index', [PanierController::class,'index'])->name('panier.index');
 // Mneu
-Route::resource('menus', MenuController::class);
+// Route::resource('menus', MenuController::class);
 // Login route
 route::get('/login',[AuthController::class,'LoginForm'])->name('login');
 route::post('login',[AuthController::class,'LoginResolve'])->name('login-resolve');

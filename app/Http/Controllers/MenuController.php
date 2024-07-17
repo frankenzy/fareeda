@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoremenuRequest;
 use App\Http\Requests\UpdatemenuRequest;
+use App\Http\Services\MenuService;
 use App\Models\menu;
 
 class MenuController extends Controller
 {
+    public function __construct(private MenuService $menu){}
     /**
      * Display a listing of the resource.
      */
@@ -30,14 +32,17 @@ class MenuController extends Controller
     public function store(StoremenuRequest $request)
     {
         //
+        return response()->json('okok', 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(menu $menu)
+    public function show($id)
     {
         //
+
+        return response()->json($menu);
     }
 
     /**

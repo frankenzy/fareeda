@@ -24,7 +24,7 @@ class MenuFactory extends Factory
             //
             'nom' => $this->faker->name(),
             'descriptions' => $this->faker->text(200),
-            'prix' => $this->faker->randomFloat(0, 0, 500),
+            'prix' => (100 *  $this->faker->randomFloat(0, 0, 500)),
             'restaurant_id' => Restaurant::inRandomOrder()->value('id'),
             'categorie_id' => Categorie::inRandomOrder()->value('id'),
         ];

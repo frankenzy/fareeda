@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Repositories;
 
+use App\Http\Constant\PanierConstant;
 use App\Http\Interfaces\RepositoryInterface;
 use App\Models\Panier;
+use Illuminate\Http\Request;
 
 class PanierRepositorie implements RepositoryInterface
 {
@@ -27,5 +29,14 @@ class PanierRepositorie implements RepositoryInterface
     public function delete(string $id)
     {
         return Panier::destroy($id);
+    }
+    public function store(Request $data){
+        return Panier::create([
+            'user_id' => $data->user->id,
+            'produit_id' => $data->menu->id,
+            'quantite' => $data->quantity,
+            'prix_unitaire' => $data->menu->prix,
+            'statut' => PanierConstant::EN_ATTENTE,
+        ]);
     }
 }

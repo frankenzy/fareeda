@@ -18,4 +18,13 @@ class PanierController extends Controller
         $paniers = $this->panierService->getAllPanier();
         return view('app.panier.read', compact('paniers'));
     }
+
+    public function store(Request $request){
+       try {
+        $this->panierService->addProductToPanier($request);
+        return response()->json('success', 201);
+       } catch (\Throwable $th) {
+        return throw $th;
+       }
+    }
 }

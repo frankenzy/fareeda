@@ -55,7 +55,7 @@
 
 <body class="font-sans antialiased bg-gray-100">
     <!-- Dynamic dark mode class binding -->
-    <div class="dark:bg-gray-900" x-data="{ notification: 0, panier: 0, total: 0, quantity: 1 }">
+    <div class="dark:bg-gray-900" x-data="{ notification: 0, total: 0, quantity: 0 }">
 
         <!-- Include navigation -->
         @include('layouts.navigation')
@@ -106,6 +106,7 @@
 
             hidePreloader();
         });
+        order = localStorage.getItem('order');
     </script>
 </body>
 

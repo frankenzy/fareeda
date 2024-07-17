@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+<nav class="bg-white border-b border-gray-100 dark:bg-gray-800 dark:border-gray-700" x-data="order:o">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto w-8xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -45,7 +45,7 @@
                             <span class="sr-only">Panier</span>
                             <div
                                 class="inline-flex absolute -top-2 justify-center items-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full border-2 border-white -end-2 dark:border-gray-900">
-                                <span x-text="total"></span>
+                              <span x-text="order"></span>
                             </div>
                         </button>
                     </div>
@@ -61,9 +61,9 @@
             class="block px-4 py-2 font-medium text-center text-gray-700 bg-gray-50 rounded-t-lg dark:bg-gray-800 dark:text-white">
             Panier
         </div>
-        <div
+        <div x-data="{ order: JSON.parse(localStorage.getItem('order')) || []}"
             class="overflow-y-auto py-2 h-96 text-gray-700 divide-y divide-gray-100 dark:divide-gray-700 dark:text-gray-200">
-            <template x-for="index in panier" :key="index">
+            <template  x-for="index in order" :key="index">
                 <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
                     <div class="grid-cols-1">
                         <div class="flex flex-col items-center space-y-2">
@@ -73,7 +73,7 @@
                                 -
                             </button>
 
-                            <span x-text="quantity"
+                            <span  x-text="quantity"
                                 class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500">
                             </span>
 
@@ -96,7 +96,7 @@
             </template>
 
         </div>
-        <a href="{{route('panier.index')}}"
+        <a href="{{ route('panier.index') }}"
             class="block py-2 text-sm font-medium text-center bg-orange-500 rounded-b-lg text-white-900 hover:bg-orange-500 dark:bg-orange-800 dark:hover:bg-orange-700 dark:text-white">
             <div class="inline-flex items-center">
                 <h3 class="text-xl text-white"> Valider mes connandes</h3>
@@ -104,3 +104,16 @@
         </a>
     </div>
 </nav>
+
+<script type="text/javascript">
+    document.addEventListener('alpine:init', () => {
+        console.log('alpine init ......');
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+    });
+
+    order = localStorage.getItem('order');
+    console.log(order);
+</script>
