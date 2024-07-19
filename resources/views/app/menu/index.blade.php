@@ -77,7 +77,7 @@
                                                     <x-slot name='footer'>
                                                         <div class="flex col-span-2 justify-between">
                                                             <div class='flex items-center'>
-                                                                <button type="button" @click="quantity = Math.max(nombre - 1, 1)"
+                                                                <button type="button" @click="quantity = Math.max(quantity - 1, 1)"
                                                                     class="px-3 py-1 text-sm text-gray-700 bg-gray-200 rounded-lg dark:text-white dark:bg-gray-700">-</button>
                                                                 <span x-text="quantity" class="content-center mx-4 items"></span>
                                                                 <button type="button" @click="quantity++"
