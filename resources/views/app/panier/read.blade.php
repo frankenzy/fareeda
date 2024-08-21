@@ -1,13 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="justify-center content-center items-center h-full">
+    <script>
+        function init() {
+            return {
+                order: function() {
+                    let order = JSON.parse(localStorage.getItem('order')) || [];
+                    console.log("Nombre total de commande", order)
+                    return order;
+                },
+                basket: function() {
+                    var basketData = localStorage.getItem('basket');
+                    console.log(basketData);
+                    return basketData ? JSON.parse(basketData) : [];
+                },
+            };
+        }
+    </script>
+
+    <div class="justify-center content-center items-center h-full" x-data=init()>
         <div class="grid grid-cols-1 gap-2 lg:grid-cols-3 sm:w-full">
 
             <h2 class="content-center text-center">Valider ma commande</h2>
             <div>
                 <div class="flex flex-wrap gap-4 p-4">
-                    @for ($i = 0; $i < 6; $i++)
+
+                    <template x-for="item in basket" :key="item.id">
                         <div class="p-2 w-full bg-white rounded-lg shadow-md lg:w-40 text-x">
                             <div class="flex justify-end mt-1">
                                 <button type="button" class="text-red-600 hover:text-red-800 focus:outline-none">
@@ -34,15 +52,18 @@
                                         alt="item_img" class="w-8 h-8 rounded-md">
 
                                     <div class="ms-2">
-                                        <h3 class="font-semibold">Crêpes Nature</h3>
-                                        <p class="text-red-600 hover:text-red-800">Quantité: 1</p>
-                                        <p class="text-gray-600">500 Fr x 1 = 500 Fr</p>
+                                        <h3 class="font-semibold" x-text="item.nom"></h3>
+                                        <p class="text-red-600 hover:text-red-800">Quantité: <span x-text='item.quantity'></span></p>
+                                        <p class="text-gray-600">
+                                            <span x-text='item.prix'></span>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                    @endfor
+                    </template>
+
                 </div>
                 <div>
                     <form class="w-full form">
@@ -59,18 +80,18 @@
                         <div class="m-2">
                             <div class="my-2">
                                 <x-input-label :value="'Type de commande'" />
-                            <x-select-input />
+                                <x-select-input />
                             </div>
                             {{-- Livraison --}}
-                            <x-text-input placeholder="Adresse"/>
+                            <x-text-input placeholder="Adresse" />
 
-                            <x-text-input placeholder="Google map adresse"/>
+                            <x-text-input placeholder="Google map adresse" />
 
                             <div class="flex my-4">
-                                <x-check-box-input type="checkbox"/>
-                                <x-input-label :value="'J ai besoin de monnaie'"/>
+                                <x-check-box-input type="checkbox" />
+                                <x-input-label :value="'J ai besoin de monnaie'" />
                             </div>
-                                                        {{-- fin livraison --}}
+                            {{-- fin livraison --}}
                             <div class="my-4 text-area">
                                 <textarea id="description" rows="2"
                                     class="block p-2.5 w-11/12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-orange-500 focus:border-orange-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"

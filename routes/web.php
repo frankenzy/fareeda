@@ -42,7 +42,7 @@ Route::resource('restaurants', RestaurantController::class);
 Route::get('menus.show',[MenuController::class,'show'])->name('menu.show');
 // Panier
 Route::post('/panier/store', [PanierController::class,'store'])->name('panier.store');
-Route::get('/panier/index', [PanierController::class,'index'])->name('panier.index');
+Route::get('/panier/index/{ids?}', [PanierController::class,'index'])->name('panier.index');
 // Mneu
 // Route::resource('menus', MenuController::class);
 // Login route
